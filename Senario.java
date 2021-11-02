@@ -75,6 +75,12 @@ public class Senario {
 		
 	}
 	
+	//https://www.codegrepper.com/code-examples/java/java+read+csv+file+into+arraylist
+	// good csv to array
+	
+	//https://stackoverflow.com/questions/4040001/creating-random-numbers-with-no-duplicates
+	// non dup numb generator
+	
 	/* What this class will do 
 	questions should incoming excel have seat number and number of bags?
 	
