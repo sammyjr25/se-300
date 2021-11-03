@@ -21,13 +21,13 @@ import java.io.FileNotFoundException;
 public class Senario {
 
 	private File datafile;
-	//public File file;
+	private ArrayList<String[]> data;
 	
 	
 	public Senario() {
 		//constructor
 		datafile = new File("Data.csv");
-		//Path path = Paths.get("C:\\Users\\Hunter\\eclipse-workspace\\SE 300//DataBase.csv");
+		data = new ArrayList<String[]>();
 		//file = new File("data.txt");
 		
 	}
@@ -37,119 +37,36 @@ public class Senario {
 		//shows where it's looking for the datafile
 		System.out.println(datafile.getAbsolutePath());
 		
-		try {
-			FileReader fr = new FileReader(datafile);
-			BufferedReader br = new BufferedReader(fr);
-			
-			List<String[]> content = new ArrayList<>();
-			// make a String called line
-			String line;
-
-			// read the header line in the file
-			line = br.readLine();
-			// print out header line 
-			System.out.println(line);
-
-			// while line is equal to the next line of the bufferedreader is not equal to null
-			// this means read the next line in the file until there are not more line to read
-			while (  ( line = br.readLine() ) != null     ) {
-
-				
-				
-				//testing colum setup
-				try {
-					// make an array to hold the columns 
-					String[] lineColumns;
-					// break the line up to columns. break on the comma and delete the comma
-					lineColumns = line.split(",");
-					//print every line
-//					System.out.println(lineColumns[0]);
-					}catch (Exception e ) {
-					}
-				
-				//intergrated readdata method
-				try {
-					
-					content.add(line.split(","));
-		            //content.forEach(System.out::println);
-//		            System.out.println(Arrays.toString(content.toArray()));
-//		            System.out.println(content);
-		            
-				}catch (Exception e ) {
-				
-				}
-				
-				
-			
-			}
+			// reader that works
 			try {
 				Scanner scan = new Scanner(datafile);
 				scan.nextLine();
-				ArrayList<String[]> input = new ArrayList<String[]>();
+				//ArrayList<String[]> input = new ArrayList<String[]>();
 				while(scan.hasNextLine()) {
-					String[] data = scan.nextLine().split(",");
-					input.add(data);
+					String[] Data = scan.nextLine().split(",");
+					data.add(Data);
 					}
-				for(int i =0; i< input.size(); i++) {
-					String[] data = input.get(i);
-					for(int j = 0; j < data.length; j++) {
-						System.out.print(data[j] + " ");
+				for(int i =0; i< data.size(); i++) {
+					String[] dataj = data.get(i);
+					for(int j = 0; j < dataj.length; j++) {
+						System.out.print(dataj[j] + " ");
 					}
 					System.out.println();
 				}
-//				for(String[] data: input) {
-//					System.out.println(data[0]);
-//				}
 			}
 			catch (Exception e) {
-				
+				e.printStackTrace();
 			}
-			
-			// when completely done with reading close the Reader
-			br.close();
-
-		} catch (Exception e) {
-
-			e.printStackTrace();
-		}
 	}
-	
 
 	
-    //testing a slightly different method of pulling file using array lists
-	public List<String[]> readData() {
-		 int count = 0;
-		    String file = "Data.csv";
-		    List<String[]> content = new ArrayList<>();
-		    try{
-		    	FileReader fr = new FileReader(datafile);
-				BufferedReader br = new BufferedReader(fr);
-				// make a String called line
-				
-				
-				
-				
-				String line = "";
-				
-				// read the header line in the file
-				line = br.readLine();
-				
-		        while ( ( line  =  br.readLine() ) != null ) {
-		            content.add(line.split(","));
-		            System.out.println(content);
-		        }
-		    } catch (Exception e) {
-		      //Some error logging
-		    }
-		    return content;
-		   
-	}
+	
+	
+	
 	public static void main(String[] args) {
 		Senario Data = new Senario();
 		//calls parseFile
 		Data.parseFile();
-		//calls readData
-		//Data.readData();
 		
 		
 		
