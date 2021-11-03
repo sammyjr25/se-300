@@ -18,13 +18,13 @@ import java.io.FileNotFoundException;
 //https://jar-download.com/maven-repository-class-search.php?search_box=org.apache.poi.xssf.usermodel.XSSFWorkbook
 // https://stackoverflow.com/questions/14958732/how-can-i-add-the-apache-poi-library-in-eclipse-for-selenium-webdriver-project/23925352
 // look into
-public class Senario {
+public class Scenario {
 
 	private File datafile;
 	private ArrayList<String[]> data;
 	
 	
-	public Senario() {
+	public Scenario() {
 		//constructor
 		datafile = new File("Data.csv");
 		data = new ArrayList<String[]>();
@@ -64,7 +64,7 @@ public class Senario {
 	
 	
 	public static void main(String[] args) {
-		Senario Data = new Senario();
+		Scenario Data = new Scenario();
 		//calls parseFile
 		Data.parseFile();
 		
