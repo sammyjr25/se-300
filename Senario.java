@@ -1,11 +1,16 @@
-package SE300;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-import com.sun.org.apache.xml.internal.serialize.LineSeparator;
-
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+import java.io.IOException;
+import java.io.FileNotFoundException;
 
 
 
@@ -27,13 +32,16 @@ public class Senario {
 		
 	}
 	public void parseFile() {
-		// this will be to for the requirements
+	
 		
+		//shows where it's looking for the datafile
 		System.out.println(datafile.getAbsolutePath());
-		//System.out.println(datafile.exits(path));
+		
 		try {
 			FileReader fr = new FileReader(datafile);
 			BufferedReader br = new BufferedReader(fr);
+			
+			List<String[]> content = new ArrayList<>();
 			// make a String called line
 			String line;
 
@@ -46,19 +54,57 @@ public class Senario {
 			// this means read the next line in the file until there are not more line to read
 			while (  ( line = br.readLine() ) != null     ) {
 
-				// make an array to hold the columns 
-				String[] lineColumns;
-				// break the line up to columns. break on the comma and delete the comma
-				lineColumns = line.split(",");
+				
 				
 				//testing colum setup
 				try {
+					// make an array to hold the columns 
+					String[] lineColumns;
+					// break the line up to columns. break on the comma and delete the comma
+					lineColumns = line.split(",");
 					//print every line
-					System.out.println(lineColumns[0]);
-					}catch ( Exception e ) {
+//					System.out.println(lineColumns[0]);
+					}catch (Exception e ) {
 					}
+				
+				//intergrated readdata method
+				try {
+					
+					content.add(line.split(","));
+		            //content.forEach(System.out::println);
+//		            System.out.println(Arrays.toString(content.toArray()));
+//		            System.out.println(content);
+		            
+				}catch (Exception e ) {
+				
+				}
+				
+				
 			
 			}
+			try {
+				Scanner scan = new Scanner(datafile);
+				scan.nextLine();
+				ArrayList<String[]> input = new ArrayList<String[]>();
+				while(scan.hasNextLine()) {
+					String[] data = scan.nextLine().split(",");
+					input.add(data);
+					}
+				for(int i =0; i< input.size(); i++) {
+					String[] data = input.get(i);
+					for(int j = 0; j < data.length; j++) {
+						System.out.print(data[j] + " ");
+					}
+					System.out.println();
+				}
+//				for(String[] data: input) {
+//					System.out.println(data[0]);
+//				}
+			}
+			catch (Exception e) {
+				
+			}
+			
 			// when completely done with reading close the Reader
 			br.close();
 
@@ -67,14 +113,50 @@ public class Senario {
 			e.printStackTrace();
 		}
 	}
+	
+
+	
+    //testing a slightly different method of pulling file using array lists
+	public List<String[]> readData() {
+		 int count = 0;
+		    String file = "Data.csv";
+		    List<String[]> content = new ArrayList<>();
+		    try{
+		    	FileReader fr = new FileReader(datafile);
+				BufferedReader br = new BufferedReader(fr);
+				// make a String called line
+				
+				
+				
+				
+				String line = "";
+				
+				// read the header line in the file
+				line = br.readLine();
+				
+		        while ( ( line  =  br.readLine() ) != null ) {
+		            content.add(line.split(","));
+		            System.out.println(content);
+		        }
+		    } catch (Exception e) {
+		      //Some error logging
+		    }
+		    return content;
+		   
+	}
 	public static void main(String[] args) {
 		Senario Data = new Senario();
+		//calls parseFile
 		Data.parseFile();
+		//calls readData
+		//Data.readData();
+		
 		
 		
 		
 	}
 	
+    
 	//https://www.codegrepper.com/code-examples/java/java+read+csv+file+into+arraylist
 	// good csv to array
 	
