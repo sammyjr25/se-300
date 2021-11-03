@@ -4,10 +4,10 @@ public class test1 {
       // hello
 
 	//hello2
-	
+	// kms cole
 	
 	/break
-	chfrujkbvjkgkfnvwhqsjkcbdwjkcb
+	
 	/test
 	
 	//help
