@@ -1,5 +1,3 @@
-
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -18,6 +16,7 @@ public class Scenario {
 	private File datasave;
 	private ArrayList<String[]> rawdata;
 	private ArrayList<String[]> sortedData;
+	private ArrayList<String[]> loadedData;
 	
 	public Scenario() {
 		//constructor
@@ -26,11 +25,12 @@ public class Scenario {
 		datafile = new File("Data.csv");
 		
 		//savefile name
-		datasave = new File ("Test.csv");
+		datasave = new File("Test.csv");
 		
 		//creates array-lists for later
 		rawdata = new ArrayList<String[]>();
 		sortedData = new ArrayList<String[]>();
+		loadedData = new ArrayList<String[]>();
 	}
 	public ArrayList<String[]> parseDataBase() {
 		
@@ -59,27 +59,39 @@ public class Scenario {
 				}
 				
 //				System.out.println();
-				// line above creates neat ordering when using the print line in for-loop
+				// line above shows the individual string arrays
 			}
 			
 			return rawdata;
 	}
 
 	
-	public ArrayList<String[]> passengerArrivale() {
+	public ArrayList<String[]> passengerArrival() {
 		// Calls the RandomNonRepeating number generator. (size, min, max) 
 		ArrayList<Integer> list = getRandomNonRepeatingIntegers(4, 0, 3);
 	    
+		// this allows only the passengerArrivale method needs to be called. 
+		rawdata = new ArrayList<String[]>(parseDataBase());
+		
 		// This loop reorders the passengers to the order they arrive and adds their order number at the end of each string array in the array list
+		
 		for (int k = 0; k < list.size(); k++) {
 	        
 			// this adds the order number to the end of the string array
+			
+			//pulls out each string array from the arraylist based on the number-generator number selected
+			// COLE	 use the .get( term) to sort which number of string you want. 
 			String[] dataPre = rawdata.get(list.get(k)); 
+			
+			// array of nulls with +1 length than dataPre
 			String[] dataPost = new String[dataPre.length + 1];
+			
+			// merges dataPre array and array of nulls
 			System.arraycopy(dataPre, 0, dataPost, 0, dataPre.length);
+			
+			// adds number from number-generator to added null space
 			dataPost[dataPre.length] = Integer.toString(k);
 			
-//			System.out.println("" + Arrays.toString(datak));
 			
 			// creates the sorted array-list
 			sortedData.add(dataPost);
@@ -88,11 +100,11 @@ public class Scenario {
 			for(int i =0; i< sortedData.size(); i++) {
 				String[] datas = sortedData.get(i);
 				for(int j = 0; j < datas.length; j++) {
-					System.out.print(datas[j] + " " );
+//					System.out.print(datas[j] + " " );
 				}
 				
-				System.out.println();
-				// line above creates neat ordering when using the print line in for-loop
+//				System.out.println();
+				// line above shows the individual string arrays
 			}
 	    
 		return sortedData;
@@ -124,44 +136,82 @@ public class Scenario {
 	
 //	https://www.codegrepper.com/code-examples/java/convert+arraylist+to+csv+file+java
 public void save() {
-		
+	System.out.println("save");
+	
+	
+	
 	
 	try {
 	//File Writers
 	FileWriter fw = new FileWriter(datasave);
     BufferedWriter bw = new BufferedWriter(fw);
-	 for(int i =0; i< sortedData.size(); i++) {
+   
+    bw.write("Seat number, # of bages, weight, dimention, Lname.FA, bagID, arrival order"); 
+	bw.newLine();
+    
+    	for(int i =0; i< sortedData.size(); i++) {
 		 String[] dataPre = sortedData.get(i); 
 
-		 //trying to comma sperate a string[]
-		 
-//		 String.join(",", dataPre);
-//		 String dataPost = dataPre.prototype.tostring();
-//		 arraytostring.dataPre.collect(Collectors.joining(", "));;
-			 
-		 
-//		 String[] datas = sortedData.get(i);
 			for(int j = 0; j < dataPre.length; j++) {
-//				System.out.print(dataPre[j] + " " );
+				
+				 if (j < dataPre.length - 1) {
+					 System.out.print(dataPre[j] + ", " );
+					 bw.write(dataPre[j] + ", " );
+				 }else {
+					 System.out.print(dataPre[j] + "\n" );
+					 bw.write(dataPre[j]);
+					 bw.newLine();
+				 }
 			}
-			
 	 }
+	 bw.close();
 	} catch (Exception e) {
 		e.printStackTrace();
 		
 	}
-    
-		
+    	
 	}
 	
+	public ArrayList<String[]> loadsave() {
+		System.out.println("loader");
+		
+		//shows where it's looking for the Data.csv. If error please place Database (.csv) in location below
+		//System.out.println(datafile.getAbsolutePath());
+		
+			// File reader that pulls all information from the database
+			try {
+				Scanner scan = new Scanner(datasave);
+				scan.nextLine();
+				
+				while(scan.hasNextLine()) {
+					String[] Data = scan.nextLine().split(",");
+					loadedData.add(Data);
+					}
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+			//outputs the rawData array-list
+			for(int i =0; i< loadedData.size(); i++) {
+				String[] dataj = loadedData.get(i);
+				for(int j = 0; j < dataj.length; j++) {
+//					System.out.print(dataj[j] + " ");
+				}
+				
+//				System.out.println();
+				// line above shows the individual string arrays
+			}
+			
+			return loadedData;
+	}
+
+
 	public static void main(String[] args) {
 		Scenario Data = new Scenario();
-		//calls parseFile
-		Data.parseDataBase();
-		Data.passengerArrivale();
+		
+		Data.passengerArrival();
 		Data.save();
-		
-		
+		Data.loadsave();
 		
 	}
 	
@@ -211,4 +261,3 @@ public void save() {
 	
 	
 }
-
