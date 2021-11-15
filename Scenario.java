@@ -1,24 +1,14 @@
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
+
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
-import java.io.IOException;
-import java.io.FileNotFoundException;
 
 
 
-//https://jar-download.com/maven-repository-class-search.php?search_box=org.apache.poi.xssf.usermodel.XSSFSheet
-//https://jar-download.com/maven-repository-class-search.php?search_box=org.apache.poi.xssf.usermodel.XSSFWorkbook
-// https://stackoverflow.com/questions/14958732/how-can-i-add-the-apache-poi-library-in-eclipse-for-selenium-webdriver-project/23925352
-// look into
+
+
 public class Scenario {
 
 	private File datafile;
@@ -45,7 +35,7 @@ public class Scenario {
 			try {
 				Scanner scan = new Scanner(datafile);
 				scan.nextLine();
-				//ArrayList<String[]> input = new ArrayList<String[]>();
+				
 				while(scan.hasNextLine()) {
 					String[] Data = scan.nextLine().split(",");
 					rawdata.add(Data);
