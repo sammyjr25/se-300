@@ -1,9 +1,12 @@
 
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 
 
@@ -12,6 +15,7 @@ import java.util.Scanner;
 public class Scenario {
 
 	private File datafile;
+	private File datasave;
 	private ArrayList<String[]> rawdata;
 	private ArrayList<String[]> sortedData;
 	
@@ -20,6 +24,9 @@ public class Scenario {
 		
 		//Database name
 		datafile = new File("Data.csv");
+		
+		//savefile name
+		datasave = new File ("Test.csv");
 		
 		//creates array-lists for later
 		rawdata = new ArrayList<String[]>();
@@ -114,12 +121,45 @@ public class Scenario {
 
 	    return numbers;
 	}
+	
+//	https://www.codegrepper.com/code-examples/java/convert+arraylist+to+csv+file+java
+public void save() {
+		
+	
+	try {
+	//File Writers
+	FileWriter fw = new FileWriter(datasave);
+    BufferedWriter bw = new BufferedWriter(fw);
+	 for(int i =0; i< sortedData.size(); i++) {
+		 String[] dataPre = sortedData.get(i); 
+
+		 //trying to comma sperate a string[]
+		 
+//		 String.join(",", dataPre);
+//		 String dataPost = dataPre.prototype.tostring();
+//		 arraytostring.dataPre.collect(Collectors.joining(", "));;
+			 
+		 
+//		 String[] datas = sortedData.get(i);
+			for(int j = 0; j < dataPre.length; j++) {
+//				System.out.print(dataPre[j] + " " );
+			}
+			
+	 }
+	} catch (Exception e) {
+		e.printStackTrace();
+		
+	}
+    
+		
+	}
+	
 	public static void main(String[] args) {
 		Scenario Data = new Scenario();
 		//calls parseFile
 		Data.parseDataBase();
 		Data.passengerArrivale();
-		
+		Data.save();
 		
 		
 		
