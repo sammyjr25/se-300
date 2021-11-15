@@ -17,9 +17,19 @@ public class Scenario {
 	private ArrayList<String[]> rawdata;
 	private ArrayList<String[]> sortedData;
 	private ArrayList<String[]> loadedData;
+	private int numbofPassengers, maxPassengers, minPassegers;
 	
 	public Scenario() {
 		//constructor
+		
+//		  this.passangers = numbofPassengers
+		 
+		//Hard coded numbers to replace later
+		numbofPassengers = 4;
+		
+		//Range in the database to pull from
+		maxPassengers = 3; // max passengers -1 (starts from 0)
+		minPassegers = 0; 
 		
 		//Database name
 		datafile = new File("Data.csv");
@@ -68,7 +78,7 @@ public class Scenario {
 	
 	public ArrayList<String[]> passengerArrival() {
 		// Calls the RandomNonRepeating number generator. (size, min, max) 
-		ArrayList<Integer> list = getRandomNonRepeatingIntegers(4, 0, 3);
+		ArrayList<Integer> list = getRandomNonRepeatingIntegers(numbofPassengers, minPassegers, maxPassengers);
 	    
 		// this allows only the passengerArrivale method needs to be called. 
 		rawdata = new ArrayList<String[]>(parseDataBase());
@@ -111,6 +121,7 @@ public class Scenario {
 		
 	}
 	
+	//https://stackoverflow.com/questions/4040001/creating-random-numbers-with-no-duplicates (5 likes)
 	// number generator for the non repeating generator
 	public static int getRandomInt(int min, int max) {
 	    Random random = new Random();
