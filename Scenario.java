@@ -1,3 +1,4 @@
+package SE300;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -43,7 +44,7 @@ public class Scenario {
 		loadedData = new ArrayList<String[]>();
 	}
 	public ArrayList<String[]> parseDataBase() {
-		
+		System.out.println("Database");
 		
 		//shows where it's looking for the Data.csv. If error please place Database (.csv) in location below
 		//System.out.println(datafile.getAbsolutePath());
@@ -65,10 +66,10 @@ public class Scenario {
 			for(int i =0; i< rawdata.size(); i++) {
 				String[] dataj = rawdata.get(i);
 				for(int j = 0; j < dataj.length; j++) {
-//					System.out.print(dataj[j] + " ");
+					System.out.print(dataj[j] + " ");
 				}
 				
-//				System.out.println();
+				System.out.println();
 				// line above shows the individual string arrays
 			}
 			
@@ -77,11 +78,13 @@ public class Scenario {
 
 	
 	public ArrayList<String[]> passengerArrival() {
+		System.out.println("Sorter");
+		
 		// Calls the RandomNonRepeating number generator. (size, min, max) 
 		ArrayList<Integer> list = getRandomNonRepeatingIntegers(numbofPassengers, minPassegers, maxPassengers);
 	    
 		// this allows only the passengerArrivale method needs to be called. 
-		rawdata = new ArrayList<String[]>(parseDataBase());
+//		rawdata = new ArrayList<String[]>(parseDataBase());
 		
 		// This loop reorders the passengers to the order they arrive and adds their order number at the end of each string array in the array list
 		
@@ -110,10 +113,10 @@ public class Scenario {
 			for(int i =0; i< sortedData.size(); i++) {
 				String[] datas = sortedData.get(i);
 				for(int j = 0; j < datas.length; j++) {
-//					System.out.print(datas[j] + " " );
+					System.out.print(datas[j] + " " );
 				}
 				
-//				System.out.println();
+				System.out.println();
 				// line above shows the individual string arrays
 			}
 	    
@@ -184,7 +187,7 @@ public void save() {
 	}
 	
 	public ArrayList<String[]> loadsave() {
-		System.out.println("loader");
+		System.out.println("load");
 		
 		//shows where it's looking for the Data.csv. If error please place Database (.csv) in location below
 		//System.out.println(datafile.getAbsolutePath());
@@ -206,10 +209,10 @@ public void save() {
 			for(int i =0; i< loadedData.size(); i++) {
 				String[] dataj = loadedData.get(i);
 				for(int j = 0; j < dataj.length; j++) {
-//					System.out.print(dataj[j] + " ");
+					System.out.print(dataj[j] + " ");
 				}
 				
-//				System.out.println();
+				System.out.println();
 				// line above shows the individual string arrays
 			}
 			
@@ -219,7 +222,7 @@ public void save() {
 
 	public static void main(String[] args) {
 		Scenario Data = new Scenario();
-		
+		Data.parseDataBase();
 		Data.passengerArrival();
 		Data.save();
 		Data.loadsave();
