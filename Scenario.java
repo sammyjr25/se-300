@@ -1,4 +1,4 @@
-package SE300;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -29,7 +29,7 @@ public class Scenario {
 		numbofPassengers = 4;
 		
 		//Range in the database to pull from
-		maxPassengers = 3; // max passengers -1 (starts from 0)
+		maxPassengers = 149; // max passengers -1 (starts from 0)
 		minPassegers = 0; 
 		
 		//Database name
@@ -44,7 +44,7 @@ public class Scenario {
 		loadedData = new ArrayList<String[]>();
 	}
 	public ArrayList<String[]> parseDataBase() {
-		System.out.println("Database");
+		System.out.println("The Database has been parsed");
 		
 		//shows where it's looking for the Data.csv. If error please place Database (.csv) in location below
 		//System.out.println(datafile.getAbsolutePath());
@@ -78,7 +78,8 @@ public class Scenario {
 
 	
 	public ArrayList<String[]> passengerArrival() {
-		System.out.println("Sorter");
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		System.out.println("The data has been sorted into passager arrival order");
 		
 		// Calls the RandomNonRepeating number generator. (size, min, max) 
 		ArrayList<Integer> list = getRandomNonRepeatingIntegers(numbofPassengers, minPassegers, maxPassengers);
@@ -150,7 +151,8 @@ public class Scenario {
 	
 //	https://www.codegrepper.com/code-examples/java/convert+arraylist+to+csv+file+java
 public void save() {
-	System.out.println("save");
+	System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+	System.out.println("The Scenario has been saved");
 	
 	
 	
@@ -160,7 +162,7 @@ public void save() {
 	FileWriter fw = new FileWriter(datasave);
     BufferedWriter bw = new BufferedWriter(fw);
    
-    bw.write("Seat number, # of bages, weight, dimention, Lname.FA, bagID, arrival order"); 
+    bw.write("Seat Number, # of bages, Weight, Dimention, Last Name, First Name, bagID, Arrival Order"); 
 	bw.newLine();
     
     	for(int i =0; i< sortedData.size(); i++) {
@@ -187,7 +189,8 @@ public void save() {
 	}
 	
 	public ArrayList<String[]> loadsave() {
-		System.out.println("load");
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		System.out.println("The Scerario has been loaded");
 		
 		//shows where it's looking for the Data.csv. If error please place Database (.csv) in location below
 		//System.out.println(datafile.getAbsolutePath());
