@@ -10,6 +10,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ChoiceBox;
 
 public class GUI extends Application
 {
@@ -38,13 +39,6 @@ public class GUI extends Application
         
         //color grid pane
         pane.setStyle("-fx-background-color: black");
-        //hb.setStyle("-fx-background-color: black");
-        
-        //pane.add(new Label("go through the options"), 0, 0);
-        //button location for buttons
-        
-        //buttons set on action to enter actions or close program
-        
         
         //MAKES AND SETS UP ALL BUTTONS...
         makeAllButtons();
@@ -68,56 +62,30 @@ public class GUI extends Application
         {
             //Set Up Buttons.........................................................................
             Button baseline_BTN = new Button("baseline");
-            Button algorithm_BTN = new Button("algorithm");
-            Button scenario_BTN = new Button("scenario");
             Button results_BTN = new Button("results");
             Button exit_BTN = new Button("Exit");    
+            ChoiceBox<String> scenario_BOX = new ChoiceBox<>();
+            ChoiceBox<String> algorithm_BOX = new ChoiceBox<>();
             
-            
-            //Add Buttons To Scene as Needed.........................................................
-            pane.add(scenario_BTN, 0, 1); 
-            pane.add(algorithm_BTN, 0, 2); 
+            //Add items To Scene as Needed.........................................................
+           
             pane.add(baseline_BTN, 0, 3); 
             pane.add(results_BTN, 0, 4); 
             pane.add(exit_BTN, 0, 5); 
-            
+            pane.add(new Label("scenario: "), 0, 14);
+            scenario_BOX.getItems().addAll("Seat location", "Bags ID","Number of bags for each passager", "when passagers checkin");
+    		pane.add(scenario_BOX, 1,14);
+            pane.add(new Label("algorithm:"), 0, 15);
+            algorithm_BOX.getItems().addAll("first one in", "last person in","names","zones","random");
+    		pane.add(algorithm_BOX, 1,15);
             //Set Button and Key Events for All Buttons.................................................
 
-            scenario_BTN.setOnAction(e ->  bp.setCenter(makeScenarioGUIPane()));
-            algorithm_BTN.setOnAction(e ->  bp.setCenter(makeAlgorithmGUIPane()));
             baseline_BTN.setOnAction(e ->  bp.setCenter(makeBaselineGUIPane()));
             results_BTN.setOnAction(e ->  bp.setCenter(makeResultsGUIPane()));
             results_BTN.setOnAction(e ->  bp.setCenter(makeResultsGUIPane()));
             exit_BTN.setOnAction(e ->  Platform.exit());
         }
         
-        public GridPane makeScenarioGUIPane()
-        {
-            GridPane pane = new GridPane();
-            TextField name = new TextField();
-            
-            pane.setStyle("-fx-background-color: black");
-            pane.setHgap(5);
-            pane.setVgap(5);
-            pane.add(new Label("Name:"), 0, 0);
-            pane.add(name, 1, 0);
-            name.setPromptText("Ex.Sam Y.");
-            return pane;
-        }
-        
-        public GridPane makeAlgorithmGUIPane()
-        {
-            GridPane pane = new GridPane();
-            TextField name = new TextField();
-            
-            pane.setStyle("-fx-background-color: black");
-            pane.setHgap(5);
-            pane.setVgap(5);
-            pane.add(new Label("Name:"), 0, 0);
-            pane.add(name, 1, 0);
-            name.setPromptText("Ex.Sam Y.");
-            return pane;
-        }
         
         public GridPane makeResultsGUIPane()
         {
@@ -129,7 +97,7 @@ public class GUI extends Application
             pane.setVgap(5);
             pane.add(new Label("Name:"), 0, 0);
             pane.add(name, 1, 0);
-            name.setPromptText("Ex.Sam Y.");
+            name.setPromptText("Ex.Sam.");
             return pane;
         }
         
