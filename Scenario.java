@@ -16,11 +16,13 @@ public class Scenario {
 	private File datafile;
 	private File datasave;
 	private ArrayList<String[]> rawdata;
-	private ArrayList<String[]> sortedData;
+	public ArrayList<String[]> sortedData;
 	private ArrayList<String[]> loadedData;
 	private int numbofPassengers, maxPassengers, minPassegers;
 	
 	public Scenario() {
+		
+		// public Scenario(numbPassengers,maxPassengres,minPassengers) {
 		//constructor
 		
 //		  this.passangers = numbofPassengers
@@ -68,7 +70,7 @@ public class Scenario {
 				for(int j = 0; j < dataj.length; j++) {
 					System.out.print(dataj[j] + " ");
 				}
-				
+						
 				System.out.println();
 				// line above shows the individual string arrays
 			}
@@ -83,7 +85,7 @@ public class Scenario {
 		
 		// Calls the RandomNonRepeating number generator. (size, min, max) 
 		ArrayList<Integer> list = getRandomNonRepeatingIntegers(numbofPassengers, minPassegers, maxPassengers);
-	    
+	    System.out.println();
 		// this allows only the passengerArrivale method needs to be called. 
 //		rawdata = new ArrayList<String[]>(parseDataBase());
 		
@@ -96,7 +98,7 @@ public class Scenario {
 			//pulls out each string array from the arraylist based on the number-generator number selected
 			// COLE	 use the .get( term) to sort which number of string you want. 
 			String[] dataPre = rawdata.get(list.get(k)); 
-			
+			//System.out.println("FUck") ;
 			// array of nulls with +1 length than dataPre
 			String[] dataPost = new String[dataPre.length + 1];
 			
@@ -106,14 +108,16 @@ public class Scenario {
 			// adds number from number-generator to added null space
 			dataPost[dataPre.length] = Integer.toString(k);
 			
-			
+
 			// creates the sorted array-list
 			sortedData.add(dataPost);
+			
 	    }
 			//outputs the sortedData array-list
 			for(int i =0; i< sortedData.size(); i++) {
 				String[] datas = sortedData.get(i);
 				for(int j = 0; j < datas.length; j++) {
+					
 					System.out.print(datas[j] + " " );
 				}
 				
@@ -178,6 +182,8 @@ public void save() {
 					 bw.write(dataPre[j]);
 					 bw.newLine();
 				 }
+				 
+				 
 			}
 	 }
 	 bw.close();
@@ -231,6 +237,14 @@ public void save() {
 		Data.loadsave();
 		
 	}
+	
+	public ArrayList<String[]> getsortedData() {
+	return this.sortedData;
+	
+	}
+	
+	
+	
 	
 //	String[] dataj = rawdata.get(1); 
 //	System.out.print(dataj[j] + " ");  // singles out sections of array
