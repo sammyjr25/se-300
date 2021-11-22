@@ -20,7 +20,7 @@ public class Scenario {
 	private ArrayList<String[]> loadedData;
 	private int numbofPassengers, maxPassengers, minPassegers;
 	
-	public Scenario() {
+	public Scenario(int numbofPassengers ) {
 		
 		// public Scenario(numbPassengers,maxPassengres,minPassengers) {
 		//constructor
@@ -28,7 +28,7 @@ public class Scenario {
 //		  this.passangers = numbofPassengers
 		 
 		//Hard coded numbers to replace later
-		numbofPassengers = 4;
+		this.numbofPassengers= numbofPassengers  ;
 		
 		//Range in the database to pull from
 		maxPassengers = 149; // max passengers -1 (starts from 0)
@@ -46,7 +46,7 @@ public class Scenario {
 		loadedData = new ArrayList<String[]>();
 	}
 	public ArrayList<String[]> parseDataBase() {
-		System.out.println("The Database has been parsed");
+		//System.out.println("The Database has been parsed");
 		
 		//shows where it's looking for the Data.csv. If error please place Database (.csv) in location below
 		//System.out.println(datafile.getAbsolutePath());
@@ -68,10 +68,10 @@ public class Scenario {
 			for(int i =0; i< rawdata.size(); i++) {
 				String[] dataj = rawdata.get(i);
 				for(int j = 0; j < dataj.length; j++) {
-					System.out.print(dataj[j] + " ");
+				//	System.out.print(dataj[j] + " ");
 				}
 						
-				System.out.println();
+			
 				// line above shows the individual string arrays
 			}
 			
@@ -98,7 +98,6 @@ public class Scenario {
 			//pulls out each string array from the arraylist based on the number-generator number selected
 			// COLE	 use the .get( term) to sort which number of string you want. 
 			String[] dataPre = rawdata.get(list.get(k)); 
-			//System.out.println("FUck") ;
 			// array of nulls with +1 length than dataPre
 			String[] dataPost = new String[dataPre.length + 1];
 			
@@ -226,11 +225,13 @@ public void save() {
 			}
 			
 			return loadedData;
+			
+			
 	}
 
 
 	public static void main(String[] args) {
-		Scenario Data = new Scenario();
+		Scenario Data = new Scenario(5);
 		Data.parseDataBase();
 		Data.passengerArrival();
 		Data.save();
@@ -239,7 +240,7 @@ public void save() {
 	}
 	
 	public ArrayList<String[]> getsortedData() {
-	return this.sortedData;
+	return this.loadedData;
 	
 	}
 	
