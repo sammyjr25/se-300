@@ -79,12 +79,12 @@ public class Scenario {
 	}
 
 	
-	public ArrayList<String[]> passengerArrival() {
+	public ArrayList<String[]> passengerArrival(int n) {
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 		System.out.println("The data has been sorted into passager arrival order");
 		
 		// Calls the RandomNonRepeating number generator. (size, min, max) 
-		ArrayList<Integer> list = getRandomNonRepeatingIntegers(numbofPassengers, minPassegers, maxPassengers);
+		ArrayList<Integer> list = getRandomNonRepeatingIntegers(n, minPassegers, maxPassengers);
 	    System.out.println();
 		// this allows only the passengerArrivale method needs to be called. 
 //		rawdata = new ArrayList<String[]>(parseDataBase());
@@ -193,19 +193,19 @@ public void save() {
     	
 	}
 	
-	public ArrayList<String[]> loadsave() {
-		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-		System.out.println("The Scerario has been loaded");
+	public ArrayList<String[]> loadsave(int n) {
+	//	System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		//System.out.println("The Scerario has been loaded");
 		
 		//shows where it's looking for the Data.csv. If error please place Database (.csv) in location below
 		//System.out.println(datafile.getAbsolutePath());
 		
 			// File reader that pulls all information from the database
 			try {
-				Scanner scan = new Scanner(datasave);
+				Scanner scan = new Scanner(datafile);
 				scan.nextLine();
 				
-				while(scan.hasNextLine()) {
+				for(int i=0; i<n;i++) {
 					String[] Data = scan.nextLine().split(",");
 					loadedData.add(Data);
 					}
@@ -217,10 +217,10 @@ public void save() {
 			for(int i =0; i< loadedData.size(); i++) {
 				String[] dataj = loadedData.get(i);
 				for(int j = 0; j < dataj.length; j++) {
-					System.out.print(dataj[j] + " ");
+				//	System.out.print(dataj[j] + " ");
 				}
 				
-				System.out.println();
+				//System.out.println();
 				// line above shows the individual string arrays
 			}
 			
@@ -231,12 +231,13 @@ public void save() {
 
 
 	public static void main(String[] args) {
-		Scenario Data = new Scenario(5);
+		
+		/*Scenario Data = new Scenario();
 		Data.parseDataBase();
 		Data.passengerArrival();
 		Data.save();
 		Data.loadsave();
-		
+		*/
 	}
 	
 	public ArrayList<String[]> getsortedData() {
