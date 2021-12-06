@@ -1,3 +1,4 @@
+package SE300;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -21,18 +22,16 @@ public class Scenario {
 	ArrayList<Integer> numbers;
 	private int numbofPassengers, maxPassengers, minPassegers;
 	
-	public Scenario(int numbofPassengers ) {
-		
-		// public Scenario(numbPassengers,maxPassengres,minPassengers) {
+	public Scenario(int numbofPassengers) {
 		//constructor
-		
-//		  this.passangers = numbofPassengers
 		 
 		//Hard coded numbers to replace later
+//		numbofPassengers = 10;
+		
 		this.numbofPassengers= numbofPassengers  ;
 		
 		//Range in the database to pull from
-		maxPassengers = 4; // max passengers -1 (starts from 0)
+		maxPassengers = 149; // max passengers -1 (starts from 0)
 		minPassegers = 0; 
 		
 		//Database name
@@ -68,38 +67,45 @@ public class Scenario {
 				e.printStackTrace();
 			}
 			//outputs the rawData array-list
-			for(int i =0; i< rawdata.size(); i++) {
-				String[] dataj = rawdata.get(i);
-				for(int j = 0; j < dataj.length; j++) {
-				//	System.out.print(dataj[j] + " ");
-				}
-						
-			
-				// line above shows the individual string arrays
-			}
+//			for(int i =0; i< rawdata.size(); i++) {
+//				String[] dataj = rawdata.get(i);
+//				for(int j = 0; j < dataj.length; j++) {
+//				//	System.out.print(dataj[j] + " ");
+//				}
+//						
+//			
+//				// line above shows the individual string arrays
+//			}
 			
 			return rawdata;
 	}
 
 	
-	public ArrayList<String[]> passengerArrival(int n) {
+	public ArrayList<String[]> passengerArrival() {
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 		System.out.println("The data has been sorted into passager arrival order");
 		
 		// Calls the RandomNonRepeating number generator. (size, min, max) 
-<<<<<<< HEAD
-		ArrayList<Integer> list = getRandomNonRepeatingIntegers(n, minPassegers, maxPassengers);
-	    System.out.println();
-=======
+
 		ArrayList<Integer> list = getRandomNonRepeatingIntegers(numbofPassengers, minPassegers, maxPassengers);
+	    System.out.println();
+
 		
-		System.out.print(list);
 		
-		
->>>>>>> ac8cd44816aeba3074dcfe760b4d3ccdae7fd421
+
 		// this allows only the passengerArrivale method needs to be called. 
-//		rawdata = new ArrayList<String[]>(parseDataBase());
+		rawdata = new ArrayList<String[]>(parseDataBase());
 		
+//		for(int i =0; i< rawdata.size(); i++) {
+//			String[] datas = rawdata.get(i);
+//			for(int j = 0; j < datas.length; j++) {
+//				
+//				System.out.print(datas[j] + " " );
+//			}
+//			
+//			System.out.println();
+//			// line above shows the individual string arrays
+//		}
 		// This loop reorders the passengers to the order they arrive and adds their order number at the end of each string array in the array list
 		
 		for (int k = 0; k < list.size(); k++) {
@@ -122,9 +128,8 @@ public class Scenario {
 			// creates the sorted array-list
 			sortedData.add(dataPost);
 			
-<<<<<<< HEAD
-=======
-			System.out.print(Integer.valueOf(dataPost[1]));
+
+//			System.out.print(Integer.valueOf(dataPost[1]));
 
 			
 			//breaks due to how the numb gen works
@@ -147,7 +152,7 @@ public class Scenario {
 //				}
 				
 			
->>>>>>> ac8cd44816aeba3074dcfe760b4d3ccdae7fd421
+
 	    }
 			//outputs the sortedData array-list
 			for(int i =0; i< sortedData.size(); i++) {
@@ -169,18 +174,18 @@ public class Scenario {
 	// number generator for the non repeating generator
 	public static int getRandomInt(int min, int max) {
 	    Random random = new Random();
-
+	    
 	    return random.nextInt((max - min) + 1) + min;
 	}
 
 	public ArrayList<Integer> getRandomNonRepeatingIntegers(int size, int min,int max) {
-	   
-//		ArrayList<Integer> numbers = new ArrayList<Integer>();
+		
+		ArrayList<Integer> numbers = new ArrayList<Integer>();
 	    
 	    // ensures no double numbers
 	    while (numbers.size() < size) {
 	        int random = getRandomInt(min, max);
-
+	        
 	        if (!numbers.contains(random)) {
 	            numbers.add(random);
 	        }
@@ -269,12 +274,12 @@ public void save() {
 
 	public static void main(String[] args) {
 		
-		/*Scenario Data = new Scenario();
-		Data.parseDataBase();
-		Data.passengerArrival();
-		Data.save();
-		Data.loadsave();
-		*/
+//		Scenario Data = new Scenario();
+//		Data.parseDataBase();
+//		Data.passengerArrival();
+//		Data.save();
+//		Data.loadsave();
+		
 	}
 	
 	public ArrayList<String[]> getsortedData() {
