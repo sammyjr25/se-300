@@ -18,6 +18,7 @@ public class Scenario {
 	private ArrayList<String[]> rawdata;
 	public ArrayList<String[]> sortedData;
 	private ArrayList<String[]> loadedData;
+	ArrayList<Integer> numbers;
 	private int numbofPassengers, maxPassengers, minPassegers;
 	
 	public Scenario(int numbofPassengers ) {
@@ -31,7 +32,7 @@ public class Scenario {
 		this.numbofPassengers= numbofPassengers  ;
 		
 		//Range in the database to pull from
-		maxPassengers = 149; // max passengers -1 (starts from 0)
+		maxPassengers = 4; // max passengers -1 (starts from 0)
 		minPassegers = 0; 
 		
 		//Database name
@@ -44,6 +45,8 @@ public class Scenario {
 		rawdata = new ArrayList<String[]>();
 		sortedData = new ArrayList<String[]>();
 		loadedData = new ArrayList<String[]>();
+		
+		numbers = new ArrayList<Integer>();
 	}
 	public ArrayList<String[]> parseDataBase() {
 		//System.out.println("The Database has been parsed");
@@ -84,8 +87,16 @@ public class Scenario {
 		System.out.println("The data has been sorted into passager arrival order");
 		
 		// Calls the RandomNonRepeating number generator. (size, min, max) 
+<<<<<<< HEAD
 		ArrayList<Integer> list = getRandomNonRepeatingIntegers(n, minPassegers, maxPassengers);
 	    System.out.println();
+=======
+		ArrayList<Integer> list = getRandomNonRepeatingIntegers(numbofPassengers, minPassegers, maxPassengers);
+		
+		System.out.print(list);
+		
+		
+>>>>>>> ac8cd44816aeba3074dcfe760b4d3ccdae7fd421
 		// this allows only the passengerArrivale method needs to be called. 
 //		rawdata = new ArrayList<String[]>(parseDataBase());
 		
@@ -111,6 +122,32 @@ public class Scenario {
 			// creates the sorted array-list
 			sortedData.add(dataPost);
 			
+<<<<<<< HEAD
+=======
+			System.out.print(Integer.valueOf(dataPost[1]));
+
+			
+			//breaks due to how the numb gen works
+			
+			// if the passengers have more than one bag then add the second bag
+//			if(Integer.valueOf(dataPost[1]) > 1) {
+//				
+//				for(int i =0; i< rawdata.size(); i++) {
+//					String[] datas = rawdata.get(i);
+//					if(dataPost[0]== datas[0]) {
+////						numbers.add(i);
+//						// merges dataPre array and array of nulls
+//						System.arraycopy(datas, 0, dataPost, 0, datas.length);
+//						
+//						// adds number from number-generator to added null space
+//						dataPost[datas.length] = Integer.toString(k);
+//						sortedData.add(dataPost);
+//						}
+//					}
+//				}
+				
+			
+>>>>>>> ac8cd44816aeba3074dcfe760b4d3ccdae7fd421
 	    }
 			//outputs the sortedData array-list
 			for(int i =0; i< sortedData.size(); i++) {
@@ -136,9 +173,9 @@ public class Scenario {
 	    return random.nextInt((max - min) + 1) + min;
 	}
 
-	public static ArrayList<Integer> getRandomNonRepeatingIntegers(int size, int min,int max) {
+	public ArrayList<Integer> getRandomNonRepeatingIntegers(int size, int min,int max) {
 	   
-		ArrayList<Integer> numbers = new ArrayList<Integer>();
+//		ArrayList<Integer> numbers = new ArrayList<Integer>();
 	    
 	    // ensures no double numbers
 	    while (numbers.size() < size) {
