@@ -30,17 +30,18 @@ public class Algorithim {
 
 		dataj= new ArrayList<String[]>();
 		dataj = Scenario.loadsave(n);
-		ArrayList<String[]> datajseat = new ArrayList<String[]>();
+		
 		datajSorted = new ArrayList<String[]>();
 		
+		// just for output raw data
 		for(int i =0; i< dataj.size(); i++) {
 			String[] datas = dataj.get(i);
 			for(int j = 0; j < datas.length; j++) {
 				
-				System.out.print(datas[j] + " " );
+				//System.out.print(datas[j] + " " );
 			}
 			
-			System.out.println();
+			//System.out.println();
 			// line above shows the individual string arrays
 		}
 		
@@ -71,14 +72,6 @@ public class Algorithim {
 				seatNum[i] = Integer.valueOf(datajInner[0].replaceAll("\\s+",""));
 				lastName[i] = datajInner[Col];
 				// Yeah this doesnt actually work. It keeps sorting like 10-11-12-20-21-22-23-30-31-32 binary bull shit
-				if (Col<= 4) {
-					lastName[i] = String.valueOf(datajInner[Col].replaceAll("\\s+",""));
-					//System.out.println("yay");
-				}
-				else if (Col >4 ) {
-					lastName[i] = datajInner[Col];
-					//System.out.println("nay");
-				}
 			}
 		}
 		
@@ -90,39 +83,50 @@ public class Algorithim {
 		 * 
 		 * 
 		 */
-		Arrays.sort(seatNum);
-		Arrays.sort(lastName);
+		
+		
+		
+		
+		
 		/** This is a dope function that automatically sorts it smallest to largest or alphabetically automatically
 		 * 
 		 */
-
-		// this keeps it all together
-		for(int i = 0; i <lastName.length;i++) {
-			for(int j =0;j <dataj.size(); j++) {
-				if(lastName[i]== (dataj.get(j)[Col])) {
-					datajSorted.add(dataj.get(j));
-					//System.out.println(datajSorted.get(i));
-					
+		//Arrays.sort(seatNum);
+		//Arrays.sort(lastName);
+		
+		if (Col<4) {
+			Arrays.sort(seatNum);
+			for(int i = 0; i <seatNum.length;i++) {
+				for(int j =0;j <dataj.size(); j++) {
+					if(seatNum[i]== Integer.valueOf(dataj.get(j)[0])) {
+						datajSorted.add(dataj.get(j));
+						//System.out.println(datajSorted.get(i)[0]);
+						//System.out.println("yes");
+					}
 				}
+	
 			}
-
+		}
+		else if (Col >=4) {
+			Arrays.sort(lastName);
+		// this keeps it all together
+			for(int i = 0; i <lastName.length;i++) {
+				for(int j =0;j <dataj.size(); j++) {
+					if(lastName[i]== (dataj.get(j)[Col])) {
+						datajSorted.add(dataj.get(j));
+			
+					}
+				}
+	
+			}
 		}
 		
-		for(int i = 0; i <seatNum.length;i++) {
-			for(int j =0;j <dataj.size(); j++) {
-				if(seatNum[i]== Integer.valueOf(dataj.get(j)[0])) {
-					datajseat.add(dataj.get(j));
-					//System.out.println(datajSorted.get(i)[0]);
-					
-				}
-			}
-
-		}
+		
 	
 		int avgTime = 0;
 		for(int i=0;i< lastName.length;i++) {
 			bagMath[i] = 450+i*5 ;
-			seatMath[i] = 240+7*Integer.valueOf(datajSorted.get(i)[0]);
+			seatMath[i] = 240+7*i ;//Integer.valueOf(datajSorted.get(i)[0]);
 			difTime[i] = bagMath[i] - seatMath[i]  ;
 			if (difTime[i] < 0) {
 				difTime[i] = 0;
@@ -146,6 +150,7 @@ public class Algorithim {
 			
 			String line;
 			for(int i = 0; i<lastName.length;i++ ) {
+			
 				// Name then Person Time, then Bag Time, then Delta Time
 				//line = "Passenger Name: "+datajSorted.get(i)[5]+", Sorted Number/Name: "+lastName[i] + ", Passenger Time:"  + seatMath[i]  + ", Bag Time:" + bagMath[i]  + ", Time Diff:" + difTime[i] ; // 9 is the column for time per person. This way it goes to the next column and then goes down to next row when it gets to the last one.
 				line = datajSorted.get(i)[5]+","+lastName[i] + ","  + seatMath[i]  + "," + bagMath[i]  + "," + difTime[i]+","+avgTime ; 
@@ -158,7 +163,7 @@ public class Algorithim {
 				
 				bw.write(line);
 				bw.newLine() ;
-				System.out.println(line);
+			//	System.out.println(line);
 				
 			}
 			
